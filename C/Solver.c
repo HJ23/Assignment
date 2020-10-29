@@ -14,7 +14,7 @@ int loop(char **content,int** lenghtMatrix ,int a, int b,int row,int col)
     tfmatrix = (int**)calloc(col, sizeof(int*));
 
     for (int i = 0; i < row; i++)
-        tfmatrix[i] = (int *)calloc(4, sizeof(int));
+        tfmatrix[i] = (int *)calloc(col, sizeof(int));
     
 
     while(x>=0 && x<row && y>=0 && y<col){
@@ -51,6 +51,14 @@ int loop(char **content,int** lenghtMatrix ,int a, int b,int row,int col)
                 continue;
             }
             break;
+        
+        for (int i = 0; i < row; i++){
+            for(int j=0;j<col;j++)
+               free(tfmatrix[i][j]);
+        }
+        for(int i=0;i<row;i++)
+             free(tfmatrix[i]);
+        
 
         return lenghtMatrix[memx][memy];
 
@@ -103,6 +111,17 @@ int32_t solve(char** content,int row,int col)
 
         }
     }
+    
+       
+        for (int i = 0; i < row; i++){
+            for(int j=0;j<col;j++)
+               free(lenghtMatrix[i][j]);
+        }
+        for(int i=0;i<row;i++)
+             free(lenghtMatrix[i]);
+        
+    
+    
         return maxiPath;
 }
 
